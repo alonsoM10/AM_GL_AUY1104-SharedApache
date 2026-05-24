@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: apache-server
-          image: giancarloloaiza/apache-server:latest
+          image: alonsoM10/apache-server:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
