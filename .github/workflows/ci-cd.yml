@@ -22,14 +22,17 @@ jobs:
 
       - name: 3 . Armar la imagen y publicarla
         run: |
-         IMAGE="${{ secrets.DOCKER_USERNAME }}/${{ inputs.image-name }}"
-      
-         docker build \
-           -t "${IMAGE}:${{ inputs.image-tag }}" \
-           -t "${IMAGE}:latest" \
-           .
-        
-         docker push --all-tags "${IMAGE}"
+          # Nombramos la imagen directamente (ajusta 'apache-server' si lo deseas)
+          IMAGE="${{ secrets.DOCKER_USERNAME }}/apache-server"
+          # Tomamos el tag de la versión (ej. v1.0.0) o el nombre de la rama
+          TAG="${{ github.ref_name }}"
+          
+          docker build \
+            -t "${IMAGE}:${TAG}" \
+            -t "${IMAGE}:latest" \
+            .
+            
+          docker push --all-tags "${IMAGE}"
 
   deploy-to-k8s:
     name: Deploy a k3s en AWS
