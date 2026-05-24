@@ -22,7 +22,7 @@ jobs:
 
       - name: 3 · Build y Push imagen
         run: |
-          IMAGE="giancarloloaiza/apache-server"
+          IMAGE="${{ secrets.DOCKER_USERNAME }}/apache-server"
           TAG="${{ github.ref_name }}"
           docker build -t "${IMAGE}:${TAG}" -t "${IMAGE}:latest" .
           docker push --all-tags "${IMAGE}"
