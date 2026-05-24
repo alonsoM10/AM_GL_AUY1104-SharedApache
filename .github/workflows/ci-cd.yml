@@ -22,9 +22,7 @@ jobs:
 
       - name: 3 . Armar la imagen y publicarla
         run: |
-          # Nombramos la imagen directamente (ajusta 'apache-server' si lo deseas)
           IMAGE="${{ secrets.DOCKER_USERNAME }}/apache-server"
-          # Tomamos el tag de la versión (ej. v1.0.0) o el nombre de la rama
           TAG="${{ github.ref_name }}"
           
           docker build \
